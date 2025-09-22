@@ -77,3 +77,11 @@ dl{
   gap: 10px;
   justify-content:  center;
 }
+
+.gallery img{
+  transition: transform .5s;
+}
+
+.gallery img:hover{
+  transform: scale(1.1);
+}
