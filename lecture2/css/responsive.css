@@ -1,0 +1,108 @@
+/* --- Base (Mobile First) --- */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.gallery img {
+  flex-shrink: 1;
+  flex-grow: 1;
+  flex-basis: 90%;  /* flex-basis practice */
+}
+
+/* STUDENT CODE STARTS HERE */
+
+
+@media screen and (min-width: 768px){
+  .grid{
+    grid-template-columns: 45% 45%;
+    justify-items: space-between;
+  }
+  /* the "Odd" column, ie when there is only one item in the row. */
+  .grid > *:nth-child(3n) {
+    grid-column: 1 / span 2;
+    width: 50%; /* Only take up half the grid width */
+    justify-self: center;
+  }
+  .grid > *:not(:nth-child(3n)) {
+    grid-column: auto / span 1;
+  }
+  .gallery{
+    display:flex;
+    justify-content: space-around;
+  }
+  .gallery img {
+    flex: 1 1 30%;  /* flex-basis practice */
+  }
+  .grid div:nth-child(even){
+    background-color: lightblue;
+  }
+}
+
+@media screen and (min-width: 1200px){
+  
+  .grid{
+    grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
+    gap: 30px;
+  }
+  .grid > *:nth-child(3n) {
+    grid-column: initial;
+    justify-self: initial;
+    width: initial;
+  }
+  .grid > *:not(:nth-child(3n)) {
+    grid-column: initial;
+    justify-self: initial;
+    width: initial;
+  }
+  .gallery{
+    justify-content: space-between;
+  }
+  .gallery img {
+    flex: 1 1 200px;
+  }
+  .grid div:hover{
+    box-shadow: 10px 10px 5px grey;
+  }
+}
+
+@media print{
+  body{
+    background-color: #fff;
+    color: #000;
+  }
+  .gallery{
+    display: none;
+  }
+  .grid{
+    grid-template-columns: 1fr;;
+  }
+  .grid div{
+    border: 5px solid black;
+    page-break-inside: avoid;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  * {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #111;
+    color: #eee;
+  }
+  .grid div{
+    background-color: #111;
+    border: 1px solid #EB5B00;
+  }
+}
